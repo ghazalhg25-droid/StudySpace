@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySpace - Student Study Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="logo"><span>✿</span> StudySpace</div>
+
+        <nav>
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">🏠 Dashboard</a>
+            <a href="#tasks" class="nav-item" data-section="tasks">📝 My Tasks</a>
+            <a href="#calendar" class="nav-item" data-section="calendar">📅 Calendar</a>
+            <a href="#subjects" class="nav-item" data-section="subjects">📚 My Subjects</a>
+            <a href="#timer" class="nav-item" data-section="timer">⏱️ Study Timer</a>
+        </nav>
+
+        <div class="profile">
+            <div class="avatar">G</div>
+            <div><h4>Student</h4><p>Welcome back!</p></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div>
+                <h1 id="greeting">Good day! ☀️</h1>
+                <p>Let's make today productive.</p>
+            </div>
+            <div class="today-date" id="todayDate"></div>
+        </header>
+
+        <section id="dashboard" class="page-section active-section">
+            <section class="welcome-card">
+                <div>
+                    <h2>Welcome to StudySpace 💜</h2>
+                    <p>Organize your studies and achieve your goals!</p>
+                </div>
+                <div class="welcome-icon">📚</div>
+            </section>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <div class="stat-icon purple">📋</div>
+                    <p>Total Tasks</p>
+                    <h2 id="totalTasks">0</h2>
+                    <span>All your tasks</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">✓</div>
+                    <p>Completed</p>
+                    <h2 id="completedTasks">0</h2>
+                    <span>Tasks completed</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">⏳</div>
+                    <p>Pending</p>
+                    <h2 id="pendingTasks">0</h2>
+                    <span>Tasks remaining</span>
+                </div>
+            </section>
+
+            <section class="panel progress-panel">
+                <div class="section-heading">
+                    <div><h2>My Progress</h2><p>Your study achievements</p></div>
+                    <strong id="progressPercent">0%</strong>
+                </div>
+                <div class="progress-track"><div id="progressBar"></div></div>
+            </section>
+
+            <section class="panel">
+                <div class="section-heading">
+                    <div><h2>Upcoming Tasks</h2><p>What you need to work on</p></div>
+                    <button class="primary-button" data-go="tasks">View All Tasks</button>
+                </div>
+                <div id="dashboardTasks" class="task-list"></div>
+            </section>
+        </section>
+
+        <section id="tasks" class="page-section">
+            <div class="section-title">
+                <div><h2>My Tasks 📝</h2><p>Plan, organize and complete your work.</p></div>
+            </div>
+
+            <form id="taskForm" class="panel form-grid">
+                <h3 class="full-width">Add a New Task</h3>
+                <input id="taskName" type="text" placeholder="Task name" required>
+                <select id="taskSubject"><option value="">Select subject</option></select>
+                <input id="taskDate" type="date">
+                <select id="taskPriority">
+                    <option value="Normal">Normal priority</option>
+                    <option value="High">High priority</option>
+                    <option value="Low">Low priority</option>
+                </select>
+                <button class="primary-button full-width" type="submit">+ Add Task</button>
+            </form>
+
+            <div class="toolbar">
+                <input id="searchTasks" type="search" placeholder="Search tasks...">
+                <select id="filterTasks">
+                    <option value="all">All tasks</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <select id="filterSubject"><option value="all">All subjects</option></select>
+            </div>
+            <div id="allTasks" class="panel task-list"></div>
+        </section>
+
+        <section id="calendar" class="page-section">
+            <div class="section-title">
+                <div><h2>Study Calendar 📅</h2><p>Your tasks arranged by due date.</p></div>
+            </div>
+            <div class="panel">
+                <h3>Upcoming deadlines</h3>
+                <div id="calendarTasks" class="calendar-list"></div>
+            </div>
+        </section>
+
+        <section id="subjects" class="page-section">
+            <div class="section-title">
+                <div><h2>My Subjects 📚</h2><p>Keep your study subjects organized.</p></div>
+            </div>
+            <form id="subjectForm" class="panel subject-form">
+                <input id="subjectName" type="text" placeholder="New subject name" required>
+                <button class="primary-button" type="submit">+ Add Subject</button>
+            </form>
+            <div id="subjectsList" class="subject-grid"></div>
+        </section>
+
+        <section id="timer" class="page-section">
+            <div class="section-title">
+                <div><h2>Study Timer ⏱️</h2><p>Focus on one task at a time.</p></div>
+            </div>
+            <div class="panel timer-panel">
+                <div class="timer-mode">FOCUS SESSION</div>
+                <div id="timerDisplay" class="timer-display">25:00</div>
+                <p id="timerMessage">Ready to focus? You've got this!</p>
+                <div class="timer-controls">
+                    <button id="startTimer" class="primary-button">Start</button>
+                    <button id="pauseTimer" class="secondary-button">Pause</button>
+                    <button id="resetTimer" class="secondary-button">Reset</button>
+                </div>
+                <div class="timer-presets">
+                    <button data-minutes="25" class="preset active">25 min</button>
+                    <button data-minutes="15" class="preset">15 min</button>
+                    <button data-minutes="5" class="preset">5 min</button>
+                </div>
+            </div>
+        </section>
+
+        <footer>Made with love 💜 | StudySpace</footer>
+    </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
